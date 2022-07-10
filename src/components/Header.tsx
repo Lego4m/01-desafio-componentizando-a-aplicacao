@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 
 import { api } from '../services/api';
 
@@ -14,7 +14,7 @@ interface GenreResponseProps {
   title: string;
 }
 
-export function Header({ selectedGenreId }: HeaderProps) {
+function HeaderElement({ selectedGenreId }: HeaderProps) {
   const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
 
   useEffect(() => {
@@ -29,3 +29,5 @@ export function Header({ selectedGenreId }: HeaderProps) {
     </header>
   );
 }
+
+export const Header = memo(HeaderElement);
